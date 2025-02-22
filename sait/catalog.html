@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volleyball Catalog</title>
+    <link rel="stylesheet" href="catalog.css">
+</head>
+<body>
+    
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="ds.html">  <img class="logoo" src="Illustrated_Digging_Volleyball_Logo-removebg-preview.png" alt="Logo"></a> 
+            </div>
+            <h1 class="logo-t">V-BALL OUTLET</h1>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="menu">
+                <a href="ds.html">Начало</a>
+                <div class="dropdown">
+                    <a href="#">Каталог</a>
+                    <div class="dropdown-content">
+                        <a href="sales.html">Продажби</a>
+                        <a href="promociq.html">Промоции</a>
+                    </div>
+                </div>
+                <a href="author.html">Автор</a>
+                <a href="contact.html">Контакти</a>
+            </div>
+            <div class="shopping-basket">
+                <div class="basket-icon" onclick="toggleBasket()">
+                  🛒 <!-- Replace with your preferred icon -->
+                  <span class="basket-counter">0</span> <!-- Counter for items -->
+                </div>
+                <div class="basket-dropdown" id="basketDropdown">
+                  <p>Кошницата е празна.</p> <!-- Default message -->
+                  <a href="form.html"><button onclick="goToBasket()">Към количката</button> <!-- Button to redirect --></a>
+                </div>
+              </div>
+        </nav>
+    </header>
+    
+    <div class="content-wrapper">
+        
+        <!-- Stripe under the navbar -->
+        <div class="stripe">
+            <p>Открийте топ оферти за волейболна екипировка и аксесоари – качество на страхотни цени!</p>
+        </div>
+
+        <div class="filter">
+            <label><input type="checkbox" class="filter-option" value="men"> Мъже</label>
+            <label><input type="checkbox" class="filter-option" value="women"> Жени</label>
+            <label><input type="checkbox" class="filter-option" value="kids"> Деца</label>
+            <label><input type="checkbox" class="filter-option" value="ball"> Топки</label>
+            <label><input type="checkbox" class="filter-option" value="other"> Аксесоари</label>
+        </div>
+        
+        <div class="catalog">
+            <div class="catalog">
+        
+                <div class="card men" data-name="Men's Item 1" data-price="199.99" data-category="men">
+                    <img src="obm.jpg" alt="Men Item 1">
+                    <p>Волейболни обувки </p>
+                    <p>199.99 лв.</p>
+                    <button onclick="addToCart('Волейболни обувки', 199.99)">Add to Cart</button>
+                </div>
+                <div class="card men" data-name="Men's Item 2" data-price="19.99"data-category="men">
+                    <img src="tm.jpg" alt="Men Item 2">
+                    <p>Тениска HUMMELS</p>
+                    <p>19.99 лв.</p>
+                    <button onclick="addToCart('Тениска HUMMELS', 19.99)">Add to Cart</button>
+                </div>
+                <div class="card men" data-name="Men's Item 3" data-price="30.39"data-category="men">
+                    <img src="pm.jpg" alt="Men Item 3">
+                    <p>Панталони KAPPA</p>
+                    <p>30.39 лв.</p>
+                    <button onclick="addToCart('Панталони KAPPA', 30.39)">Add to Cart</button>
+                </div>
+                <div class="card men" data-name="Men's Item 4" data-price="15.59"data-category="men">
+                    <img src="men.jpg" alt="Men Item 4">
+                    <p>Наколенка ADDIDAS</p>
+                    <p>15.59 лв.</p>
+                    <button onclick="addToCart('Наколенка ADDIDAS', 15.59)">Add to Cart</button>
+                </div>
+                
+                <div class="card women" data-name="Women's Item 1" data-price="30.59"data-category="women">
+                    <img src="pkj.jpg" alt="Women Item 1">
+                    <p>Къси панталони</p>
+                    <p>30.59 лв.</p>
+                    <button onclick="addToCart('Къси панталони',30.59)">Add to Cart</button>
+                </div>
+                <div class="card women" data-name="Women's Item 2" data-price="25.69 "data-category="women">
+                    <img src="tj.jpg" alt="Women Item 2">
+                    <p>Rashguard</p>
+                    <p>25.69 лв.</p>
+                    <button onclick="addToCart('Rashguard', 25.69 )">Add to Cart</button>
+                </div>
+                <div class="card women" data-name="Women's Item 3" data-price="169.99 "data-category="women">
+                    <img src="oj.jpg" alt="Women Item 3">
+                    <p>Женски обувки</p>
+                    <p>169.99 лв.</p>
+                    <button onclick="addToCart('Женски обувки', 169.99 )">Add to Cart</button>
+                </div>
+                <div class="card women" data-name="Women's Item 4" data-price="15.69"data-category="women">
+                    <img src="wom.jpg" alt="Women Item 4">
+                    <p>Спортен ръкав ERREA</p>
+                    <p>15.69 лв.</p>
+                    <button onclick="addToCart('Спортен ръкав ERREA', 15.69)">Add to Cart</button>
+                   
+                </div>
+                    
+                
+                <div class="card kids" data-name="Kid's Item 1" data-price="149.99"data-category="kids">
+                    <img src="od.jpg" alt="Kid Item 1">
+                    <p>Обувки UNISEX</p>
+                    <p>149.99 лв.</p>
+                    <button onclick="addToCart('Обувки UNISEX', 149.99)">Add to Cart</button>
+                </div>
+                <div class="card kids" data-name="Kid's Item 2" data-price="9.99"data-category="kids">
+                    <img src="td.jpg" alt="Kid Item 2">
+                    <p>Детска тениска</p>
+                    <p>9.99 лв.</p>
+                    <button onclick="addToCart('Детска тениска', 9.99)">Add to Cart</button>
+                </div>
+                <div class="card kids" data-name="Kid's Item 3" data-price="19.99"data-category="kids">
+                    <img src='pd.jpg' alt="Kid Item 3">
+                    <p>Детски шорти</p>
+                    <p>19.99 лв.</p>
+                    <button onclick="addToCart('Детски шорти', 19.99)">Add to Cart</button>
+                </div>
+                <div class="card kids" data-name="Kid's Item 4" data-price="5.99"data-category="kids">
+                    <img src="kk.jpg" alt="Kid Item 4">
+                    <p>Детски наколенки ERREA</p>
+                    <p>5.99 лв.</p>
+                    <button onclick="addToCart('Детски наколенки ERREA', 5.99)">Add to Cart</button>
+                </div>
+    
+    
+    
+                <div class="card ball" data-name="ball's Item 1" data-price="105.99" data-category="ball">
+                    <img src="ball1.jpg" alt="ball Item 1">
+                    <p>Волейболна топка Molten Light Weight</p>
+                    <p>105.99 лв.</p>
+                    <button onclick="addToCart('Волейболна топка Molten Light Weight', 105.99)">Add to Cart</button>
+                </div>
+                <div class="card ball" data-name="ball's Item 2" data-price="129.99"data-category="ball">
+                    <img src="ball2.jpg" alt="ball Item 2">
+                    <p>Волейболна топка Wilson AVP</p>
+                    <p>129.99 лв.</p>
+                    <button onclick="addToCart('Волейболна топка Wilson AVP', 129.99)">Add to Cart</button>
+                </div>
+                <div class="card ball" data-name="ball's Item 3" data-price="229.999"data-category="ball">
+                    <img src="ball3.jpg" alt="ball Item 3">
+                    <p>Волейболна топка Nike All-Court</p>
+                    <p>229.99 лв.</p>
+                    <button onclick="addToCart('Волейболна топка Nike All-Court', 229.99)">Add to Cart</button>
+                </div>
+                <div class="card ball" data-name="ball's Item 4" data-price="349.99"data-category="ball">
+                    <img src="ball4.jpg" alt="ball Item 4">
+                    <p>Волейболна топка Mikasa V200W</p>
+                    <p>349.99 лв.</p>
+                        <button onclick="addToCart('Волейболна топка Mikasa V200W',349.99)">Add to Cart</button>
+                </div>
+    
+
+
+
+
+
+                <div class="card ball" data-name="ball's Item 1" data-price="399.99" data-category="other">
+                    <img src="acc1.jpg" alt="ball Item 1">
+                    <p>Волейболна мрежа</p>
+                    <p>399.99 лв.</p>
+                    <button onclick="addToCart('Волейболна мрежа', 399.99)">Add to Cart</button>
+                </div>
+                <div class="card ball" data-name="ball's Item 2" data-price="19.99"data-category="other">
+                    <img src="acc2.jpg" alt="ball Item 2">
+                    <p>Съдийски табели за точки</p>  
+                    <p>19.99 лв.</p>
+                    <button onclick="addToCart('Съдийски табели за точки', 19.99)">Add to Cart</button>
+                </div>
+                <div class="card ball" data-name="ball's Item 3" data-price="39.99"data-category="other">
+                    <img src="acc3.jpg" alt="ball Item 3">
+                    <p>Антени за волейболна мрежа</p>
+                    <p>39.99 лв.</p>
+                    <button onclick="addToCart('Антени за волейболна мрежа', 39.99)">Add to Cart</button>
+                </div>
+                <div class="card ball" data-name="ball's Item 4" data-price="85.99"data-category="other">
+                    <img src="acc4.jpg" alt="ball Item 4">
+                    <p>Спортна чанта Errea</p>
+                    <p>85.99 лв.</p>
+                    <button onclick="addToCart('Спортна чанта Errea', 85.99)">Add to Cart</button>
+                </div>
+            </div>
+            
+        </div>
+        
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Function to handle the filtering logic
+            function filterCatalog() {
+                // Get all the checked checkboxes
+                const selectedCategories = Array.from(document.querySelectorAll('.filter-option:checked'))
+                                                 .map(checkbox => checkbox.value);
+        
+                // Get all the cards in the catalog
+                const catalogItems = document.querySelectorAll('.catalog .card');
+        
+                // Loop through each catalog item and hide/show based on the selected categories
+                catalogItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    if (selectedCategories.length === 0 || selectedCategories.includes(itemCategory)) {
+                        item.style.display = 'block'; // Show item
+                    } else {
+                        item.style.display = 'none'; // Hide item
+                    }
+                });
+            }
+        
+            // Listen for checkbox changes to trigger the filter function
+            document.querySelectorAll('.filter-option').forEach(checkbox => {
+                checkbox.addEventListener('change', filterCatalog);
+            });
+        
+            // Pre-select the correct category based on URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+            
+            if (category) {
+                const checkbox = document.querySelector(`.filter-option[value="${category}"]`);
+                if (checkbox) {
+                    checkbox.checked = true; // Pre-select based on the URL
+                }
+            }
+        
+            // Trigger the filter function on page load (in case any filters are pre-selected)
+            filterCatalog();
+        });
+        </script>
+        
+        
+        
+
+        <!-- Main Content (Catalog with 12 cards) -->
+       
+
+
+
+       
+        
+        
+    </div>
+    
+     <script src="catalog.js"></script>
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>За нас</h3>
+                <p>Ние сме екип от волейболни ентусиасти, посветени на предоставянето на висококачествени аксесоари за всеки играч.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Връзки с нас</h3>
+                <ul>
+                    <li><a href="#">Контакт</a></li>
+                    <li><a href="#">Формуляр поправка на продукт</a></li>
+                    <li><a href="#">Формуляр връщане на продукт</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Последвайте ни</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook--v1.png" alt="Facebook Icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="https://img.icons8.com/ios-filled/50/ffffff/twitter-squared.png" alt="Twitter Icon"></a>
+                    <a href="#" aria-label="Instagram"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram Icon"></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Абонирай се за нюзлетъра</h3>
+                <form id="subscribe-form" class="subscribe-form">
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p class="subscription-message" id="subscription-message"></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 V-ball outlet. All rights reserved. <a href="#privacy-policy">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    
+</body>
+</html>

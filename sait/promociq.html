@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПРОМЦИИ</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Flexbox layout for body */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background-color: #f8f9fa;
+}
+
+/* Main content area will take the remaining space */
+.main-content {
+    flex-grow: 1;
+    overflow-y: auto; /* Make the content scrollable if needed */
+    padding: 20px;
+}
+body > .main-content {
+    margin-bottom: 0;
+}
+
+.navbar {
+    background-color: #345b91;
+    padding: 0.5rem 2rem;
+    display: flex;
+    align-items: center;
+    position: fixed;  /* Keep it fixed at the top */
+    top: 0;
+    width: 100%;  /* Full width of the screen */
+    height: 80px;
+    z-index: 1000;  /* Ensure the navbar stays on top of content */
+}
+
+.logo-t{
+    color: white;
+}
+
+.logo {
+    width: 156px;
+    height: auto;
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+}
+
+
+.logoII {
+    width: 100%;
+    height: auto;
+    align-items: center;
+    background-color: #df9ec8;
+}
+
+.logoII img {
+    width: 150px;
+    height: auto;
+    padding-top: 10px;
+}
+.logooII{
+    align-items: center;
+}
+.logooII{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+
+
+.menu {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    flex: 1;
+}
+
+.navbar a {
+    color: #f4f4f4;
+    text-decoration: none;
+    margin: 0 1rem;
+    padding: 0.5rem;
+    position: relative;
+    transition: color 0.4s ease-in-out;
+    font-size: 1.5rem;
+}
+
+.navbar a:hover {
+    color: #ffcc00;
+}
+
+
+
+
+
+
+.shopping-basket {
+    position: relative;
+  }
+  
+  .basket-icon {
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .basket-counter {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+  }
+  
+  .basket-dropdown {
+    display: none; /* Hidden by default */
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .basket-dropdown p {
+    margin: 0;
+    color: #333;
+  }
+  
+  .basket-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #345b91;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .basket-dropdown button:hover {
+    background-color: #345b91;
+  }
+
+
+
+
+
+
+
+
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #345b91;
+    min-width: 250px;
+    z-index: 1;
+    padding: 1rem;
+    min-width: 150px;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    padding-top: 30px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #f4f4f4;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.dropdown-content a:hover {
+    background-color: #f6b815;
+    color: black;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #345b91;;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    margin-top: auto; /* Push footer to the bottom */
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 7rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-column h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #f6b815;
+}
+
+.footer-column p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-column ul li a {
+    color: #f4f4f4;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-column ul li a:hover {
+    color: #f6b815;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.2);
+}
+
+.footer-bottom {
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.footer-bottom a {
+    color: #f6b815;
+    text-decoration: underline;
+}
+
+.subscribe-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.subscribe-form input[type="email"] {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.subscribe-form button {
+    padding: 0.5rem 1rem;
+    background-color: #f6b815;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.subscribe-form button:hover {
+    background-color: #f6b815;
+}
+
+.subscription-message {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #f6b815;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Adjust the content to avoid overlap */
+.content-wrapper {
+    margin-top: 100px; /* Ensures the content doesn't go behind the navbar */
+}
+
+.stripe {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+.filter {
+    background-color: #e2e2e2;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 18px;
+    position: relative;
+    top: 0;
+    border-radius: 8px;
+}
+
+.filter label {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid #345b91;
+}
+
+.filter label:hover {
+    background: #f6b815;
+    color: black;
+}
+
+.filter input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #345b91;
+    border-radius: 4px;
+    margin-right: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.filter input[type="checkbox"]:checked {
+    background-color: #345b91;
+    border-color: #345b91;
+}
+
+.filter input[type="checkbox"]::after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.filter input[type="checkbox"]:checked::after {
+    opacity: 1;
+}
+
+
+
+
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 40px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Card Styles */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+
+.card p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.card button {
+    margin-top: 10px;
+    padding: 12px;
+    background-color: #345b91;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 16px;
+    transition:  0.3s ease;
+}
+
+.card button:hover {
+    background-color: #ffcc00;
+    color: black;
+}
+
+.sales-banner {
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    background: #ff0000;
+    padding: 5px 15px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    
+}
+.par{
+    padding-bottom: 20px;
+    font-size: 35px;
+    font-weight: bolder;
+}
+.p1{
+    margin-top: 100px;
+    color: black;
+}
+
+    </style>
+</head>
+<body>
+    
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="ds.html">  <img class="logoo" src="Illustrated_Digging_Volleyball_Logo-removebg-preview.png" alt="Logo"></a> 
+            </div>
+          
+               
+                <!-- Other navbar items -->
+       
+            
+            <h1 class="logo-t">V-BALL OUTLET</h1>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="menu">
+                <a href="ds.html">Начало</a>
+                <div class="dropdown">
+                    <a href="catalog.html">Каталог</a>
+                    <div class="dropdown-content">
+                        <a href="sales.html">Продажби</a>
+                        <a href="promociq.html">Промоции</a>
+                    </div>
+                </div>
+                <a href="author.html">Автор</a>
+                <a href="contact.html">Контакти</a>
+            </div>
+            <div class="shopping-basket">
+                <div class="basket-icon" onclick="toggleBasket()">
+                  🛒 <!-- Replace with your preferred icon -->
+                  <span class="basket-counter">0</span> <!-- Counter for items -->
+                </div>
+                <div class="basket-dropdown" id="basketDropdown">
+                  <p>Кошницата е празна.</p> <!-- Default message -->
+                  <a href="form.html"><button onclick="goToBasket()">Към количката</button> <!-- Button to redirect --></a>
+                </div>
+              </div>
+        </nav>
+    </header>
+    
+    <div class="content-wrapper">
+        
+        <!-- Stripe under the navbar -->
+        <div class="stripe">
+            <p class="par">Грабнете топ промоции на волейболна екипировка и аксесоари – качество на страхотни цени!</p>
+            <span class="sales-banner">🔥 СУПЕР НАМАЛЕНИЯ 🔥</span>
+        </div>
+
+        <div class="filter">
+            <label><input type="checkbox" class="filter-option" value="men"> 50% НАМАЛЕНИЕ</label>
+            <label><input type="checkbox" class="filter-option" value="women"> 35% НАМАЛЕНИЕ</label>
+            <label><input type="checkbox" class="filter-option" value="kids"> 20% НАМАЛЕНИЕ</label>
+           
+        </div>
+        
+        <div class="catalog">
+            <style>
+                .discount-label {
+                    background-color: red;
+                    color: white;
+                    padding: 5px;
+                    font-size: 12px;
+                    position: absolute;
+                    top: 5px;
+                    left: 5px;
+                    border-radius: 5px;
+                }
+                .card {
+                    position: relative;
+                    padding: 10px;
+                    border: 1px solid #ddd;
+                    margin: 10px;
+                    display: inline-block;
+                    text-align: center;
+                }
+                .old-price {
+                    text-decoration: line-through;
+                    color: gray;
+                    margin-right: 5px;
+                }
+            </style>
+            
+            <script>
+               function applyDiscounts() {
+    document.querySelectorAll(".card").forEach(card => {
+        let price = parseFloat(card.dataset.price);
+        let category = card.dataset.category;
+        let discount = 0;
+
+        if (category === "men") discount = 0.50;
+        else if (category === "women") discount = 0.35;
+        else if (category === "kids") discount = 0.20;
+        else discount = 0.10;
+
+        let discountedPrice = (price * (1 - discount)).toFixed(2);
+
+        let label = document.createElement("div");
+        label.className = "discount-label";
+        label.innerText = `СУПЕР НАМАЛЕНИЕ ${discount * 100}%`;
+
+        let priceTag = card.querySelector("p");
+        priceTag.innerHTML = `<span class='old-price'>${price.toFixed(2)} лв.</span> ${discountedPrice} лв.`;
+
+        card.prepend(label);
+    });
+}
+
+window.onload = applyDiscounts;
+
+            </script>
+            
+            <div class="card men" data-name="Men's Item 1" data-price="154.79" data-category="men">
+                
+                <img src="pr1.jpg" alt="Men Item 1">
+                
+                <p>Волейболна мрежа със сет – Mikasa</p>
+                <p>Волейболна мрежа със сет – Mikasa</p>
+                <button onclick="addToCart('Волейболна мрежа със сет – Mikasa', 77.39)">Add to Cart</button>
+            </div>
+            
+            <div class="card men" data-name="Men's Item 2" data-price="50.79" data-category="men">
+                <img src="pr2.jpg" alt="Men Item 2">
+                <p>Мъжки волейболни шорти – Errea</p>
+                <p>Мъжки волейболни шорти – Errea</p>
+
+                <button onclick="addToCart('Мъжки волейболни шорти – Errea', 25.39)">Add to Cart</button>
+            </div>
+            <div class="card men" data-name="Men's Item 3" data-price="152.79" data-category="men">
+                <img src="pr3.jpg" alt="Men Item 3">
+                <p>Волейболна топка – Mikasa MSN78</p>
+                <p>Волейболна топка – Mikasa MSN78</p>
+                <button onclick="addToCart('Волейболна топка – Mikasa MSN78', 76.39)">Add to Cart</button>
+            </div>
+            
+            <div class="card men" data-name="Men's Item 4" data-price="139.79" data-category="men">
+                <img src="pr4.jpg" alt="Men Item 4">
+                <p>Волейболна топка Wilson "Cast Away"</p>
+                <p>Волейболна топка Wilson "Cast Away"</p>
+                
+                <button onclick="addToCart('Волейболна топка Wilson Cast Away', 69.89)">Add to Cart</button>
+            </div>
+            
+            <div class="card women" data-name="Women's Item 1" data-price="226.19" data-category="women">
+                <img src="pr5.jpg" alt="Women Item 1">
+                <p>Дамски волейболни обувки – Nike</p>
+                <p>Дамски волейболни обувки – Nike</p>
+                <button onclick="addToCart('Дамски волейболни обувки – Nike', 147.02)">Add to Cart</button>
+            </div>
+            
+            <div class="card kids" data-name="Kid's Item 1" data-price="40.39" data-category="kids">
+                <img src="pr6.jpg" alt="Kid Item 1">
+                <p>Мъжка волейболна тениска – Errea</p>
+                <p>Мъжка волейболна тениска – Errea</p>
+                <button onclick="addToCart('Мъжка волейболна тениска – Errea', 32.31)">Add to Cart</button>
+            </div>
+
+            <div class="card kids" data-name="Kid's Item 1" data-price="16.39" data-category="kids">
+                <img src="pr7.jpg" alt="Kid Item 1">
+                <p>Треньорска тактическа дъска за волейбол</p>
+                <p>Треньорска тактическа дъска за волейбол</p>
+                <button onclick="addToCart('Треньорска тактическа дъска за волейбол', 13.11)">Add to Cart</button>
+            </div>
+
+            <div class="card kids" data-name="Kid's Item 1" data-price="60.39" data-category="kids">
+                <img src="pr8.jpg" alt="Kid Item 1">
+                <p>Волейболна мешка – Errea</p>
+                <p>Волейболна мешка – Errea</p>
+                <button onclick="addToCart('Волейболна мешка – Errea', 48.31)">Add to Cart</button>
+            </div>
+        </div>
+        
+        
+        
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Function to handle the filtering logic
+            function filterCatalog() {
+                // Get all the checked checkboxes
+                const selectedCategories = Array.from(document.querySelectorAll('.filter-option:checked'))
+                                                 .map(checkbox => checkbox.value);
+        
+                // Get all the cards in the catalog
+                const catalogItems = document.querySelectorAll('.catalog .card');
+        
+                // Loop through each catalog item and hide/show based on the selected categories
+                catalogItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    if (selectedCategories.length === 0 || selectedCategories.includes(itemCategory)) {
+                        item.style.display = 'block'; // Show item
+                    } else {
+                        item.style.display = 'none'; // Hide item
+                    }
+                });
+            }
+        
+            // Listen for checkbox changes to trigger the filter function
+            document.querySelectorAll('.filter-option').forEach(checkbox => {
+                checkbox.addEventListener('change', filterCatalog);
+            });
+        
+            // Pre-select the correct category based on URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+            
+            if (category) {
+                const checkbox = document.querySelector(`.filter-option[value="${category}"]`);
+                if (checkbox) {
+                    checkbox.checked = true; // Pre-select based on the URL
+                }
+            }
+        
+            // Trigger the filter function on page load (in case any filters are pre-selected)
+            filterCatalog();
+        });
+       // Масив за съхраняване на добавените артикули в количката (с име и цена)
+let basketItems = [];
+
+// Функция за превключване на падащото меню на количката
+function toggleBasket() {
+    const dropdown = document.getElementById('basketDropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+
+// Пренасочване към страницата на количката
+function goToBasket() {
+    window.location.href = 'form.html'; // Заменете с вашия URL на страницата за количката
+}
+
+// Изчистване на всички артикули от количката
+function clearBasket() {
+    basketItems = []; // Изчистване на масива
+    updateBasketCounter(); // Нулиране на брояча
+    updateBasketDropdown(); // Актуализиране на потребителския интерфейс
+}
+
+// Актуализиране на брояча на количката
+function updateBasketCounter() {
+    const counter = document.querySelector('.basket-counter');
+    counter.textContent = basketItems.length;
+}
+
+// Актуализиране на падащото меню на количката за показване на добавените артикули
+function updateBasketDropdown() {
+    const basketDropdown = document.getElementById('basketDropdown');
+    let itemList = '';
+    let totalPrice = 0;
+
+    basketItems.forEach(item => {
+        itemList += `<p>${item.name} - ${item.price.toFixed(2)} лв.</p>`;
+        totalPrice += item.price;
+    });
+
+    basketDropdown.innerHTML = `<p>Вашата количка:</p>` + itemList + 
+                               `<p><strong>Общо: ${totalPrice.toFixed(2)} лв.</strong></p>` +
+                               `<button onclick="goToBasket()">Към количката</button>` +
+                               `<button onclick="clearBasket()">Изчисти количката</button>`;
+}
+
+// Добавяне на артикул в количката с име и цена
+function addToCart(itemName, itemPrice) {
+    basketItems.push({ name: itemName, price: itemPrice });
+    updateBasketCounter();
+    updateBasketDropdown();
+}
+
+// Затваряне на падащото меню при клик извън него
+window.onclick = function(event) {
+    const dropdown = document.getElementById('basketDropdown');
+    if (!event.target.matches('.basket-icon')) {
+        dropdown.style.display = 'none';
+    }
+};
+
+
+// Filter function for filtering cards based on selected checkboxes
+document.querySelectorAll('.filter-option').forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+        const selectedFilters = Array.from(document.querySelectorAll('.filter-option:checked')).map(cb => cb.value);
+        document.querySelectorAll('.card').forEach(card => {
+            if (selectedFilters.length === 0) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = selectedFilters.some(filter => card.classList.contains(filter)) ? 'block' : 'none';
+            }
+        });
+    });
+});
+
+// Function to toggle the mobile menu
+function toggleMenu() {
+    const menu = document.querySelector('.menu');
+    const hamburger = document.querySelector('.hamburger');
+    
+    // Toggle active classes
+    menu.classList.toggle('active');
+    hamburger.classList.toggle('active');
+}
+
+// Optional: Close the menu when clicking outside (for mobile devices)
+document.addEventListener('click', function(e) {
+    const menu = document.querySelector('.menu');
+    const hamburger = document.querySelector('.hamburger');
+    if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+        menu.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+});
+
+// Hover effect for card images
+document.querySelectorAll('.card').forEach(card => {
+    const img = card.querySelector('.default-img');
+    const hoverImgSrc = img.getAttribute('data-hover'); // Set hover image in `data-hover`
+
+    card.addEventListener('mouseenter', () => {
+        img.src = hoverImgSrc; // Change image on hover
+    });
+
+    card.addEventListener('mouseleave', () => {
+        img.src = img.getAttribute('data-original'); // Change back on unhover
+    });
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the query parameters from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // Get the category filter from the URL (e.g., "men", "women", "kids")
+    const category = urlParams.get('category');
+    
+    if (category) {
+        // Get all filter checkboxes
+        const checkboxes = document.querySelectorAll('.filter-option');
+        
+        // Loop through each checkbox
+        checkboxes.forEach(checkbox => {
+            // If the checkbox value matches the category, check it
+            if (checkbox.value === category) {
+                checkbox.checked = true;
+            }
+        });
+    }
+});
+        </script>
+        
+        
+        
+
+        <!-- Main Content (Catalog with 12 cards) -->
+       
+
+
+
+       
+        
+        
+    </div>
+    
+     <script src="catalog.js"></script>
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>За нас</h3>
+                <p>Ние сме екип от волейболни ентусиасти, посветени на предоставянето на висококачествени аксесоари за всеки играч.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Връзки с нас</h3>
+                <ul>
+                    <li><a href="#">Контакт</a></li>
+                    <li><a href="#">Формуляр поправка на продукт</a></li>
+                    <li><a href="#">Формуляр връщане на продукт</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Последвайте ни</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook--v1.png" alt="Facebook Icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="https://img.icons8.com/ios-filled/50/ffffff/twitter-squared.png" alt="Twitter Icon"></a>
+                    <a href="#" aria-label="Instagram"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram Icon"></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Абонирай се за нюзлетъра</h3>
+                <form id="subscribe-form" class="subscribe-form">
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p class="subscription-message" id="subscription-message"></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 V-ball outlet. All rights reserved. <a href="#privacy-policy">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    
+</body>
+</html>

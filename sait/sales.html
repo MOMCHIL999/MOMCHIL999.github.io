@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продажби</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        /* Form Styles */
+        .buying-form {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding-top: 122px;
+            padding-left: 700px;
+        }
+        .buying-form input, .buying-form select, .buying-form textarea {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .buying-form button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Pop-up Modal */
+        .popup-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+        }
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+        .popup-content button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+
+
+        #salesChart {
+            max-width: 100%;
+            height: 400px;
+            margin-left: 200px;
+            margin-right: 200px;
+            margin-top: 50px;
+            margin-bottom: 150px;
+        }
+
+
+
+
+
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Flexbox layout for body */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background-color: #f8f9fa;
+}
+
+/* Main content area will take the remaining space */
+.main-content {
+    flex-grow: 1;
+    overflow-y: auto; /* Make the content scrollable if needed */
+    padding: 20px;
+}
+body > .main-content {
+    margin-bottom: 0;
+}
+
+.navbar {
+    background-color: #345b91;
+    padding: 0.5rem 2rem;
+    display: flex;
+    align-items: center;
+    position: fixed;  /* Keep it fixed at the top */
+    top: 0;
+    width: 100%;  /* Full width of the screen */
+    height: 80px;
+    z-index: 1000;  /* Ensure the navbar stays on top of content */
+}
+
+.logo-t{
+    color: white;
+}
+
+.logo {
+    width: 156px;
+    height: auto;
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+}
+
+
+.logoII {
+    width: 100%;
+    height: auto;
+    align-items: center;
+    background-color: #df9ec8;
+}
+
+.logoII img {
+    width: 150px;
+    height: auto;
+    padding-top: 10px;
+}
+.logooII{
+    align-items: center;
+}
+.logooII{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+
+
+.menu {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    flex: 1;
+}
+
+.navbar a {
+    color: #f4f4f4;
+    text-decoration: none;
+    margin: 0 1rem;
+    padding: 0.5rem;
+    position: relative;
+    transition: color 0.4s ease-in-out;
+    font-size: 1.5rem;
+}
+
+.navbar a:hover {
+    color: #ffcc00;
+}
+
+
+
+
+
+
+.shopping-basket {
+    position: relative;
+  }
+  
+  .basket-icon {
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .basket-counter {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+  }
+  
+  .basket-dropdown {
+    display: none; /* Hidden by default */
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .basket-dropdown p {
+    margin: 0;
+    color: #333;
+  }
+  
+  .basket-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #345b91;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .basket-dropdown button:hover {
+    background-color: #345b91;
+  }
+
+
+
+
+
+
+
+
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #345b91;
+    min-width: 250px;
+    z-index: 1;
+    padding: 1rem;
+    min-width: 150px;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    padding-top: 30px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #f4f4f4;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.dropdown-content a:hover {
+    background-color: #f6b815;
+    color: black;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #345b91;;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    margin-top: auto; /* Push footer to the bottom */
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 7rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-column h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #f6b815;
+}
+
+.footer-column p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-column ul li a {
+    color: #f4f4f4;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-column ul li a:hover {
+    color: #f6b815;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.2);
+}
+
+.footer-bottom {
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.footer-bottom a {
+    color: #f6b815;
+    text-decoration: underline;
+}
+
+.subscribe-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.subscribe-form input[type="email"] {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.subscribe-form button {
+    padding: 0.5rem 1rem;
+    background-color: #f6b815;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.subscribe-form button:hover {
+    background-color: #f6b815;
+}
+
+.subscription-message {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #f6b815;
+}
+
+
+
+
+/* Style for the paragraph */
+.par {
+    max-width: 800px; /* Limit the width for better readability */
+    background: #f8f9fa; /* Light background for contrast */
+    padding: 20px;
+    border-radius: 10px; /* Smooth rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.6; /* Improve readability */
+    color: #333; /* Dark gray text */
+    margin-top: 20px; /* Space from the table */
+}
+
+/* Make hashtags stand out */
+.par strong {
+    color: #007bff; /* Blue color for highlights */
+    font-weight: bold;
+}
+
+/* Add some space to emojis */
+.par .emoji {
+    font-size: 22px;
+    margin: 0 5px;
+}
+
+
+.c {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content horizontally */
+    text-align: center; /* Centers text inside the paragraph */
+    margin-top: 120px;
+    margin-bottom: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="ds.html">  <img class="logoo" src="Illustrated_Digging_Volleyball_Logo-removebg-preview.png" alt="Logo"></a> 
+            </div>
+            <h1 class="logo-t">V-BALL OUTLET</h1>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="menu">
+                <a href="ds.html">Начало</a>
+                <div class="dropdown">
+                    <a href="catalog.html">Каталог</a>
+                    <div class="dropdown-content">
+                        <a href="sales.html">Продажби</a>
+                        <a href="promociq.html">Промоции</a>
+                    </div>
+                </div>
+                <a href="author.html">Автор</a>
+                <a href="contact.html">Контакти</a>
+            </div>
+            <div class="shopping-basket">
+                <div class="basket-icon" onclick="toggleBasket()">
+                  🛒 <!-- Replace with your preferred icon -->
+                  <span class="basket-counter">0</span> <!-- Counter for items -->
+                </div>
+                <div class="basket-dropdown" id="basketDropdown">
+                  <p>Кошницата е празна.</p> <!-- Default message -->
+                  <a href="form.html"><button onclick="goToBasket()">Към количката</button> <!-- Button to redirect --></a>
+                </div>
+              </div>
+        </nav>
+    </header>
+    <div class="c"> <p class="par">Покоряваме върхове заедно! 🏐🔥
+
+        Всеки месец ние растем, благодарение на вашето доверие и любов към волейбола! От началото на 2024 г. до сега продажбите ни вървят само нагоре, доказвайки, че страстта към играта обединява всички нас.
+        
+        Вашата подкрепа ни мотивира да предлагаме още по-качествени аксесоари за волейбол – продукти, които ви помагат да бъдете по-бързи, по-силни и по-добри на игрището. Вече покорихме нови върхове, но заедно можем още!
+        
+        🎯 Целта за 2025? Да направим волейболната екипировка достъпна за всеки, който обича спорта! Благодарим ви, че сте част от нашата волейболна общност! 🙌
+        
+        #ИграйСУвереност #ВолейболБезГраници #ЗаедноКъмВърха
+        
+        
+        
+        
+        
+        
+        
+        </p>
+</div>
+    <!-- Form Section -->
+    <div class="container">
+       
+
+        <!-- Sales graph (Bar chart) -->
+        <div class="card">
+            <div class="card-body">
+                
+                <canvas id="salesChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+   
+      <!-- Script for the sales graph (Chart.js) -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+          var ctx = document.getElementById('salesChart').getContext('2d');
+          var salesChart = new Chart(ctx, {
+              type: 'bar',  // Change this to bar chart
+              data: {
+                  labels: [
+                      'Януари 2024', 'Февруари 2024', 'Март 2024', 'Април 2024', 
+                      'Май 2024', 'Юни 2024', 'Юли 2024', 'Август 2024', 
+                      'Септември 2024', 'Октомври 2024', 'Ноември 2024', 'Декември 2024',
+                      'Януари 2025', 'Февруари 2025', 'Март 2025', 'Април 2025'
+                  ],  // Labels for each month from Jan 2024 to Apr 2025
+                  datasets: [{
+                      label: 'Продажби ($)',
+                      data: [
+                          1000, 1500, 1550, 3200, 5500, 4900, 5300, 4600, 5900, 5980, 5367, 5550,
+                          6500, 6700, 6545, 7000
+                      ],  // Sales data for each month
+                      backgroundColor: '#345b91',  /* Blue bar color */
+                      borderColor: '#345b91',  /* Blue bar border color */
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  responsive: true,
+                  scales: {
+                      x: {
+                          beginAtZero: true
+                      },
+                      y: {
+                          beginAtZero: true,
+                          ticks: {
+                              stepSize: 1000  // Adjust the step size for the y-axis
+                          }
+                      }
+                  }
+              }
+          });
+
+
+          var ctx = document.getElementById('salesChart').getContext('2d');
+    var salesChart = new Chart(ctx, {
+        type: 'bar',  // Bar chart
+        data: {
+            labels: [
+                'Януари 2024', 'Февруари 2024', 'Март 2024', 'Април 2024', 
+                'Май 2024', 'Юни 2024', 'Юли 2024', 'Август 2024', 
+                'Септември 2024', 'Октомври 2024', 'Ноември 2024', 'Декември 2024',
+                'Януари 2025', 'Февруари 2025', 'Март 2025', 'Април 2025'
+            ],
+            datasets: [{
+                label: 'Продажби ($)',
+                data: [
+                    3000, 3500, 4000, 4200, 4500, 4900, 5300, 5600, 5900, 6200, 6500, 7000,
+                    7500, 8000, 8500, 9000
+                ],
+                backgroundColor: '#345b91',  /* Blue bar color */
+                borderColor: '#345b91',  /* Blue bar border color */
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1000  // Adjust the step size for the y-axis
+                    }
+                }
+            },
+            animation: {
+                duration: 1500,  // Duration of the animation in milliseconds
+                easing: 'easeOutBounce',  // Easing function for the animation
+                onComplete: function() {
+                    console.log('Animation completed!');
+                }
+            }
+        }
+    });
+    
+    // Basket items array to store added items (with name and price)
+let basketItems = [];
+
+// Function to toggle the basket dropdown
+function toggleBasket() {
+    const dropdown = document.getElementById('basketDropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+
+// Redirect to the basket page
+function goToBasket() {
+    window.location.href = 'form.html'; // Replace with your basket page URL
+}
+
+// Update the basket counter
+function updateBasketCounter() {
+    const counter = document.querySelector('.basket-counter');
+    counter.textContent = basketItems.length;
+}
+
+// Add item to the basket with both name and price
+function addToCart(itemName, itemPrice) {
+    // Add the item (name and price) to the basketItems array
+    basketItems.push({ name: itemName, price: itemPrice });
+
+    // Update the basket counter
+    updateBasketCounter();
+
+    // Update the basket dropdown to show added items
+    const basketDropdown = document.getElementById('basketDropdown');
+    let itemList = '';
+    let totalPrice = 0;
+
+    // Loop through the basket items to build the item list and calculate the total price
+    basketItems.forEach(item => {
+        itemList += `<p>${item.name} - $${item.price.toFixed(2)}</p>`;  // Display item name and price
+        totalPrice += item.price;  // Accumulate the total price
+    });
+
+    // Display total price in the dropdown
+    basketDropdown.innerHTML = `<p>Your basket:</p>` + itemList + 
+                               `<p><strong>Total: $${totalPrice.toFixed(2)}</strong></p>` +
+                               `<button onclick="goToBasket()">Go to Basket</button>`;
+}
+
+// Close the dropdown when clicking outside of it
+window.onclick = function(event) {
+    const dropdown = document.getElementById('basketDropdown');
+    if (!event.target.matches('.basket-icon')) {
+        dropdown.style.display = 'none';
+    }
+};
+
+      </script>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>За нас</h3>
+            <p>Ние сме екип от волейболни ентусиасти, посветени на предоставянето на висококачествени аксесоари за всеки играч.</p>
+        </div>
+        <div class="footer-column">
+            <h3>Връзки с нас</h3>
+            <ul>
+                <li><a href="#">Контакт</a></li>
+                <li><a href="#">Формуляр поправка на продукт</a></li>
+                <li><a href="#">Формуляр връщане на продукт</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Последвайте ни</h3>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook--v1.png" alt="Facebook Icon"></a>
+                <a href="#" aria-label="Twitter"><img src="https://img.icons8.com/ios-filled/50/ffffff/twitter-squared.png" alt="Twitter Icon"></a>
+                <a href="#" aria-label="Instagram"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram Icon"></a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>Абонирай се за нюзлетъра</h3>
+            <form id="subscribe-form" class="subscribe-form">
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <p class="subscription-message" id="subscription-message"></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 V-ball outlet. All rights reserved. <a href="#privacy-policy">Privacy Policy</a></p>
+    </div>
+</footer>
+</body>
+</html>
